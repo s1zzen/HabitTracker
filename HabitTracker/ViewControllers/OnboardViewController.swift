@@ -15,11 +15,10 @@ protocol ContentViewControllerDelegate: AnyObject {
 
 final class OnboardViewController: UIPageViewController {
     private let dataStorage = DataStorege.shared
-    private let analyticsService = AnalyticsService()
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
-        pageControl.currentPageIndicatorTintColor = .ypBlack
-        pageControl.pageIndicatorTintColor = .ypWhite
+        pageControl.currentPageIndicatorTintColor = .ypBlackDay
+        pageControl.pageIndicatorTintColor = .backgroundDay
         pageControl.currentPage = 0
         pageControl.addTarget(OnboardViewController.self, action: #selector(pageControlTapped), for: .valueChanged)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -30,14 +29,14 @@ final class OnboardViewController: UIPageViewController {
         {
             let controller = OnboardContentViewController()
             controller.backgroundImage = UIImage(named: "blueImage")
-            controller.descriptionText = NSLocalizedString("blueOnboardingText", comment: "blueOnboardingText")
+            controller.descriptionText = "Track only what you want"
             controller.delegate = self
             return controller
         }(),
         {
             let controller = OnboardContentViewController()
             controller.backgroundImage = UIImage(named: "redImage")
-            controller.descriptionText = NSLocalizedString("redOnboardingText", comment: "redOnboardingText")
+            controller.descriptionText = "Even if it's not liters of water and yoga"
             controller.delegate = self
             return controller
         }()
@@ -59,7 +58,6 @@ final class OnboardViewController: UIPageViewController {
         super.viewDidLoad()
         configViews()
         configConstraints()
-        analyticsService.report(event: .open, params: ["Screen" : "Onboarding"])
     }
 
     // MARK: - Actions
