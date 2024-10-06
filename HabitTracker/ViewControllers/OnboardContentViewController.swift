@@ -2,7 +2,7 @@
 //  OnboardContentVC.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 01.09.2024.
+//  Created by Сергей Баскаковon 01.09.2024.
 //
 
 import UIKit
@@ -20,7 +20,7 @@ final class OnboardContentViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.boldSystemFont(ofSize: 32)
-        label.tintColor = .ypBlack
+        label.tintColor = .ypBlackDay
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -28,9 +28,9 @@ final class OnboardContentViewController: UIViewController {
 
     private lazy var button: UIButton = {
         let button = UIButton()
-        button.setTitle(NSLocalizedString("onboardingButton", comment: "onboardingButton"), for: .normal)
+        button.setTitle("Wow! These are technologies!", for: .normal)
         button.layer.cornerRadius = 16
-        button.backgroundColor = .ypBlack
+        button.backgroundColor = .ypBlackDay
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         return button
@@ -74,14 +74,12 @@ final class OnboardContentViewController: UIViewController {
             backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
             label.heightAnchor.constraint(equalToConstant: 76),
             label.widthAnchor.constraint(equalToConstant: 343),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -304),
-
             button.heightAnchor.constraint(equalToConstant: 60),
             button.widthAnchor.constraint(equalToConstant: 335),
             button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -84),

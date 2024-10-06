@@ -2,7 +2,7 @@
 //  CreatingTrackersModel.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 28.07.2024.
+//  Created by Сергей Баскаковon 28.07.2024.
 //
 
 import Foundation

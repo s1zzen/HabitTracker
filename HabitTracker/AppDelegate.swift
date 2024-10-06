@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 28.07.2024.
+//  Created by Сергей Баскаковon 28.07.2024.
 //
 
 import UIKit
@@ -12,7 +12,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        AnalyticsService.activate()
         return true
     }
 

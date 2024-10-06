@@ -2,7 +2,7 @@
 //  ScheduleViewController.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 28.07.2024.
+//  Created by Сергей Баскаковon 28.07.2024.
 //
 
 import UIKit
@@ -10,13 +10,13 @@ import UIKit
 // MARK: - enum DaysOfTheWeek
 
 enum DaysOfTheWeek: String, CaseIterable {
-    case monday = "Понедельник"
-    case tuesday = "Вторник"
-    case wednesday = "Среда"
-    case thursday = "Четверг"
-    case friday = "Пятница"
-    case saturday = "Суббота"
-    case sunday = "Воскресенье"
+    case monday = "Monday"
+    case tuesday = "Tuesday"
+    case wednesday = "Wednesday"
+    case thursday = "Thursday"
+    case friday = "Friday"
+    case saturday = "Saturday"
+    case sunday = "Sunday"
 }
 
 // MARK: - ScheduleViewController
@@ -31,8 +31,8 @@ final class ScheduleViewController: UIViewController {
 
     private lazy var scheduleLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("schedule", comment: "schedule")
-        label.textColor = .ypBlack
+        label.text = "Schedule"
+        label.textColor = .ypBlackDay
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -40,10 +40,10 @@ final class ScheduleViewController: UIViewController {
 
     private lazy var doneButton: UIButton = {
         let button = UIButton()
-        button.setTitle(NSLocalizedString("ready", comment: "ready"), for: .normal)
-        button.setTitleColor(.ypWhite, for: .normal)
+        button.setTitle("Ready", for: .normal)
+        button.setTitleColor(.ypWhiteDay, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .ypBlack
+        button.backgroundColor = .ypBlackDay
         button.layer.cornerRadius = 16
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,7 @@ final class ScheduleViewController: UIViewController {
     }
 
     private func configViews() {
-        view.backgroundColor = .ypWhite
+        view.backgroundColor = .ypWhiteDay
         view.addSubview(tableView)
         view.addSubview(scheduleLabel)
         view.addSubview(doneButton)
@@ -102,12 +102,10 @@ final class ScheduleViewController: UIViewController {
         NSLayoutConstraint.activate([
             scheduleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             scheduleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 27),
-
             tableView.topAnchor.constraint(equalTo: scheduleLabel.bottomAnchor, constant: 30),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: doneButton.topAnchor, constant: -70),
-
             doneButton.heightAnchor.constraint(equalToConstant: 60),
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -156,22 +154,7 @@ extension ScheduleViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath) as? ScheduleCell
         else { fatalError() }
         cell.delegate = self
-        var day: String = DaysOfTheWeek.allCases[indexPath.row].rawValue
-        if day == "Понедельник" {
-            day = NSLocalizedString("Monday", comment: "Monday")
-        } else if day == "Вторник" {
-            day = NSLocalizedString("Tuesday", comment: "Tuesday")
-        } else if day == "Среда" {
-            day = NSLocalizedString("Wednesday", comment: "Wednesday")
-        } else if day == "Четверг" {
-            day = NSLocalizedString("Thursday", comment: "Thursday")
-        } else if day == "Пятница" {
-            day = NSLocalizedString("Friday", comment: "Friday")
-        } else if day == "Суббота" {
-            day = NSLocalizedString("Saturday", comment: "Saturday")
-        } else {
-            day = NSLocalizedString("Sunday", comment: "Sunday")
-        }
+        let day: String = DaysOfTheWeek.allCases[indexPath.row].rawValue
         let isSwitchOn = dataStorege.loadDaysInAWeek().contains(day)
         cell.configureCell(with: day, isSwitchOn: isSwitchOn, cellIndex: indexPath.row, numberOfLines: DaysOfTheWeek.allCases.count)
         return cell

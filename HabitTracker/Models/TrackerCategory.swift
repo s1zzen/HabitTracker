@@ -2,12 +2,12 @@
 //  TrackerCategory.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 28.07.2024.
+//  Created by Сергей Баскаковon 28.07.2024.
 //
 
 import Foundation
 
 struct TrackerCategory {
-    var title: String
-    var trackers: [Tracker]
+    let title: String
+    let trackers: [Tracker]
 }

@@ -2,22 +2,17 @@
 //  TrackersRecordStorage.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 25.08.2024.
+//  Created by Сергей Баскаковon 25.08.2024.
 //
 
 import UIKit
 import CoreData
 
-protocol TrackersRecordStorageDelegate: AnyObject {
-    func didUpdateData(in store: TrackersRecordStorage)
-}
-
-final class TrackersRecordStorage: NSObject {
-    weak var delegate: TrackersRecordStorageDelegate?
+final class TrackersRecordStorage {
     private let context: NSManagedObjectContext
 
     // MARK: Initialisation
-    convenience override init() {
+    convenience init() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         self.init(context: context)
     }
@@ -72,13 +67,5 @@ final class TrackersRecordStorage: NSObject {
         } catch {
             throw StorageError.failedReading
         }
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-
-extension TrackersRecordStorage: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.didUpdateData(in: self)
     }
 }

@@ -2,7 +2,7 @@
 //  DateFormatter.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 28.07.2024.
+//  Created by Сергей Баскаковon 28.07.2024.
 //
 
 import Foundation
@@ -12,7 +12,7 @@ var dateFormatter: DateFormatter = {
     dateFormatter.dateStyle = .long
     dateFormatter.timeStyle = .none
     dateFormatter.dateFormat = "MM/dd/YY"
-    dateFormatter.locale = Locale.current
+    dateFormatter.locale = Locale(identifier: "en_EN")
     dateFormatter.dateFormat = "E"
     return dateFormatter
 }()

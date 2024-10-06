@@ -2,7 +2,7 @@
 //  Tracker.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 28.07.2024.
+//  Created by Сергей Баскаковon 28.07.2024.
 //
 
 import UIKit
@@ -13,5 +13,4 @@ struct Tracker {
     let color: UIColor
     let emoji: String
     let dateEvents: [Int]?
-    let isPinned: Bool
 }

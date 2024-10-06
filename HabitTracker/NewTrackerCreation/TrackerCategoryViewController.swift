@@ -2,7 +2,7 @@
 //  TrackerCategoryViewController.swift
 //  HabitTracker
 //
-//  Created by Сергей Баскаков on 28.07.2024.
+//  Created by Сергей Баскаковon 28.07.2024.
 //
 
 import UIKit
@@ -33,8 +33,8 @@ final class TrackerCategoryViewController: UIViewController {
 
     private lazy var habitLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("category", comment: "category")
-        label.textColor = .ypBlack
+        label.text = "Category"
+        label.textColor = .ypBlackDay
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -50,7 +50,7 @@ final class TrackerCategoryViewController: UIViewController {
 
     private lazy var descriptionPlaceholderStub: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("descriptionPlaceholderStub", comment: "descriptionPlaceholderStub")
+        label.text = "Habits and events can be\ncombined in meaning"
         label.numberOfLines = 2
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 12, weight: .medium)
@@ -60,10 +60,10 @@ final class TrackerCategoryViewController: UIViewController {
 
     private lazy var creatingHabitButton: UIButton = {
         let button = UIButton()
-        button.setTitle(NSLocalizedString("addCategory", comment: "addCategory"), for: .normal)
-        button.setTitleColor(.ypWhite, for: .normal)
+        button.setTitle("Add category", for: .normal)
+        button.setTitleColor(.ypWhiteDay, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-        button.backgroundColor = .ypBlack
+        button.backgroundColor = .ypBlackDay
         button.layer.cornerRadius = 16
         button.layer.masksToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -95,8 +95,7 @@ final class TrackerCategoryViewController: UIViewController {
     // MARK: Binding
     private func bind() {
         viewModel?.$categories.bind(action: { [weak self] _ in
-            guard let self else { return }
-            self.checkForAvailableCategories()
+            self?.checkForAvailableCategories()
         })
     }
 
@@ -131,7 +130,7 @@ final class TrackerCategoryViewController: UIViewController {
     private func configViews() {
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = .ypWhite
+        view.backgroundColor = .ypWhiteDay
         view.addSubview(habitLabel)
         view.addSubview(creatingHabitButton)
         view.addSubview(mainStarImageStub)
@@ -142,15 +141,12 @@ final class TrackerCategoryViewController: UIViewController {
         NSLayoutConstraint.activate([
             habitLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             habitLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 27),
-
             mainStarImageStub.widthAnchor.constraint(equalToConstant: 80),
             mainStarImageStub.heightAnchor.constraint(equalToConstant: 80),
             mainStarImageStub.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainStarImageStub.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-
             descriptionPlaceholderStub.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             descriptionPlaceholderStub.topAnchor.constraint(equalTo: mainStarImageStub.bottomAnchor, constant: 8),
-
             creatingHabitButton.heightAnchor.constraint(equalToConstant: 60),
             creatingHabitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             creatingHabitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -190,7 +186,7 @@ extension TrackerCategoryViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let deleteAction = UIAction(title: NSLocalizedString("deleteCategory", comment: "deleteCategory"), attributes: .destructive) { [weak self] _ in
+        let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] _ in
             guard let self = self else { return }
             try? self.viewModel?.removeACategory(atIndex: indexPath.row)
             self.checkForAvailableCategories()
@@ -214,8 +210,8 @@ extension TrackerCategoryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
         guard let count = viewModel?.categoriesCount() else { return UITableViewCell() }
         cell.textLabel?.text = viewModel?.categories[indexPath.row].title
-        cell.textLabel?.textColor = .ypBlack
-        cell.backgroundColor = .ypWhite
+        cell.textLabel?.textColor = .ypBlackDay
+        cell.backgroundColor = .backgroundDay
         cell.layer.masksToBounds = true
         cell.layer.cornerRadius = 16
         cell.separatorInset = separatorInsetForCell(index: indexPath.row, numberOfLines: count)
