@@ -14,7 +14,7 @@ class SupplementaryView: UICollectionReusableView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 19, weight: .bold)
-        label.textColor = .ypBlack
+        label.textColor = .ypBlackDay
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

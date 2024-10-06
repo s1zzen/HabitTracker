@@ -13,6 +13,4 @@ enum StorageError: Error {
     case failedDecoding
     case failedGettingTitle
     case failedActionDelete
-    case failedActionUpdate
-    case trackerNotFound
 }
